@@ -15,6 +15,14 @@ case "$COMMAND" in
     create_local_data)
         python3 generator/generate.py local_data
         ;;
+    
+    build_reporter)
+        docker build -t reporter ./reporter
+        ;;
+
+    run_reporter)
+        docker run --rm -v "$(pwd)/data:/data" reporter
+        ;;
 
     *)
         echo "Неизвестная команда: $COMMAND"
